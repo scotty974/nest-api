@@ -5,6 +5,11 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
+  app.enableVersioning({
+    defaultVersion : "1.0",
+    type: VersioningType.URI,
+  });
   const config = new DocumentBuilder()
     .setTitle('NestJs Full Api')
     .setDescription('A NestJs backend example')
@@ -13,10 +18,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  app.setGlobalPrefix('api');
-  app.enableVersioning({
-    type: VersioningType.URI,
-  });
+ 
+
   await app.listen(3333);
 }
 bootstrap();
