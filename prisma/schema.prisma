@@ -23,11 +23,11 @@ model Users {
 
 model Bookmark {
   id Int @id @default(autoincrement())
-  created_at DateTime @default(now())
-  updating_at DateTime @updatedAt
   title String
   description String
   link String
   userId Int
   user Users @relation(fields: [userId], references: [id])
+  created_at DateTime @default(now())
+  updating_at DateTime @updatedAt
 }
