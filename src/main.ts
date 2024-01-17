@@ -13,10 +13,10 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  app.setGlobalPrefix('api')
+  app.setGlobalPrefix('api');
   app.enableVersioning({
-    type : VersioningType.URI
-  })
+    type: VersioningType.URI,
+  });
   await app.listen(3333);
 }
 bootstrap();
