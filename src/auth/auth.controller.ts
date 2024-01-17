@@ -1,5 +1,6 @@
-import { Controller, Version, Get, Post } from '@nestjs/common';
+import { Controller, Version, Get, Post,Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -7,7 +8,8 @@ export class AuthController {
 
   @Post('signup')
   @Version('1')
-  signup() {
+  signup(@Req() req:Request) {
+    console.log(req.headers)
     return this.authService.signup();
   }
 
